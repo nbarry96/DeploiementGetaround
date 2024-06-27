@@ -1,4 +1,4 @@
-# Tableau de bord : Analyse des retards de Getaround 🚗
+# Tableau de bord : Analyse des retards de Getaround ⏱
 
 Lorsqu'un utilisateur retarde le retour d'une voiture louée sur GetAround, cela peut perturber la disponibilité du véhicule pour les locations suivantes, affectant ainsi la qualité du service et la satisfaction des clients. L'objectif ici est de déployer un tableau de bord en ligne pour aider GetAround à  non seulemrnt Évaluer l'ampleur du problème, mais aussi Simuler les conséquences potentielles de l'instauration d'un délai minimal entre deux locations consécutives d'un même véhicule sur l'entreprise. 
 
