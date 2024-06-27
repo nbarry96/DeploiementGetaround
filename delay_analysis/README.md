@@ -16,14 +16,14 @@ Vous pouvez accéder au tableau de bord en ligne à cet emplacement : https://ge
 * Avoir un éditeur de code (Visual Studio Code par exemple)
 ## 3. Dossier du projet
 Clonez ce dépôt pour créer votre dossier de projet :
-`git clone https://github.com/nbarry96/ML-Supervis-.git`
+`git clone https://github.com/nbarry96/DeploiementGetaround.git`
 
-## 4. Créer et déployer l'appliation vers heroku
+## 4. Créer et déployer l'application vers heroku
 
-Placez-vous dans le répertoire du projet **Supervised_ML** 
+Placez-vous dans le répertoire du projet `DeploiementGetaround`
 
 ```bash
-cd Deploiement-Getaround/delay-analysis/
+cd DeploiementGetaround/delay-analysis/
 ```
 
 Créez l'application Heroku hébergeant l'application
