@@ -1,0 +1,10 @@
+docker run -it \
+  -p 4000:4000 \
+  -v "$(pwd):/home/app" \
+  -e APP_URI="YOUR_APP_URI" \
+  -e PORT=4000 \
+  -e AWS_ACCESS_KEY_ID="YOUR_ACCESS_KEY_ID" \
+  -e AWS_SECRET_ACCESS_KEY="YOUR_SECRET_ACCESS_KEY" \
+  -e BACKEND_STORE_URI="YOUR_BACKEND_STORE_URI" \
+  -e ARTIFACT_STORE_URI="YOUR_ARTIFACT_STORE_URI" \
+  mlflow-sample-api
