@@ -1,4 +1,4 @@
-# Projet de Déploiement GetAround - Analyse des Retards et Prédiction des Prix de Location de Voiture
+# Projet de Déploiement GetAround - Analyse des Retards et Prédiction des Prix de Location de Voiture 🚗 ⏱
 ## I. Inroduction
 GetAround est l'Airbnb des voitures. Vous pouvez louer des voitures à n’importe qui pour quelques heures à quelques jours ! Fondée en 2009, cette entreprise a connu une croissance rapide. En 2019, ils comptent plus de 5 millions d'utilisateurs et environ 20 000 voitures disponibles dans le monde.
 
