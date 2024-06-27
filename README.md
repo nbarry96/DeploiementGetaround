@@ -21,7 +21,7 @@ Le fichier `EDA.ipynb` comprend l'analyse exploratoire des données.
 ## IV. Livrables
 - Un tableau de bord web dédié à l'analyse et aux simulations des retards : https://getearound-api-analysis-ac45266e0df6.herokuapp.com/
 - Une application web hébergeant le serveur de suivi MLFlow : https://mlflow-api-85ae755d001e.herokuapp.com/
-- Une API web pour les prévisions des prix de location de voitures : ???
+- Une API web pour les prévisions des prix de location de voitures (Application disponible au niveau local)
 
 ## V. Auteur
 Nene Oumou BARRY
