@@ -13,6 +13,7 @@ Ce projet est structuré en trois sous-projets distincts, chacun avec son propre
 1- Analyse des retards (voir le code source et le README.md [ici](https://github.com/nbarry96/DeploiementGetaround/tree/main/delay_analysis))
 
 2- Prédiction des prix de location de voiture (voir le code source et le fichier README.md lien[ici](https://github.com/nbarry96/DeploiementGetaround/tree/main/price_predictor))
+
 3- Création d'une API pour la prédiction pour la prédiction du prix de location (voir le code source et le fichier README.md [ici](https://github.com/nbarry96/DeploiementGetaround/tree/main/api))
 
 Le fichier `EDA.ipynb` comprend l'analyse exploratoire des données.
