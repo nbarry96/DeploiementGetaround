@@ -27,9 +27,13 @@ cd DeploiementGetaround/api/
 chmod +X run.sh
 ./run.sh
 ```
-*
-
-
-
+* Installer les packages requis
+```bash
+pip install -r requirements.txt
+```
+* Lancer l'application au niveau local
+```bash
+python3 main.py 
+```
 ## Source de données
 Le jeu de données utilisé pour ce projet est fourni par Jedha Bootcamp et est disponible [ici](https://full-stack-assets.s3.eu-west-3.amazonaws.com/Deployment/get_around_pricing_project.csv)
