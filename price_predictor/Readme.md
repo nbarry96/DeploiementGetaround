@@ -22,12 +22,12 @@ price_predictor
 
 └── tracking_server_setup
 
-├── 
-    ├── Dockerfile
-├──     
+    ├── Dockerfile 
+    
     ├── requirements.txt
-├──    
+    
     └── run.sh
+
 
 ### 2. Prérequis - Installations
 * Avoir un éditeur de code (Visual Studio Code par exemple)
