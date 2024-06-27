@@ -8,13 +8,15 @@ Vous pouvez accéder à l'application en ligne hébergeant le serveur MLflow : h
 ### 1. Structure du projet
 
 price_predictor/
+
 │
 ├── training/
-│   ├── Dockerfile/
-│   ├── requirements.txt/
-│   ├── run.sh/
-│   └── train.py/
+│   ├── Dockerfile
+│   ├── requirements.txt
+│   ├── run.sh
+│   └── train.py
 │
+
 └── tracking_server_setup/
     ├── Dockerfile/
     ├── requirements.txt/
