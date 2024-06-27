@@ -21,10 +21,12 @@ price_predictor
 │   └── train.py
 
 └── tracking_server_setup
+├── 
     ├── Dockerfile
+├──     
     ├── requirements.txt
+├──    
     └── run.sh
-
 
 ### 2. Prérequis - Installations
 * Avoir un éditeur de code (Visual Studio Code par exemple)
