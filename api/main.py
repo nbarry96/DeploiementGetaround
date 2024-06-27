@@ -1,17 +1,42 @@
+import gc
+import uvicorn
+import numpy as np
 import pandas as pd
-from joblib import load
-from pydantic import BaseModel, Field, Literal
-from typing import Union
-from fastapi import FastAPI
 from pydantic import BaseModel
-from fastapi.encoders import jsonable_encoder
+from typing import Literal
+from fastapi import FastAPI
+from fastapi.responses import RedirectResponse
+from joblib import load
 
+# Description pour l'application FastAPI
+description = """
+Bienvenue sur l'API de prédiction de prix de location GetAround !\n
+Soumettez les caractéristiques de votre voiture pour obtenir une estimation du prix de location quotidien, basée sur l'un des trois modèles pré-entraînés : Régression Linéaire, Régression Ridge ou Forêt Aléatoire.
 
-# Définition d'une classe pour les données d'entrée
-class RequestCar(BaseModel):
+**Utilisez l'endpoint /predict pour estimer le prix de location de votre voiture !**
+"""
+
+# Métadonnées pour les tags FastAPI
+tags_metadata = [
+    {
+        "name": "Prédictions",
+        "description": "Point de terminaison pour obtenir des prédictions."
+    }
+]
+
+# Instanciation de l'application FastAPI
+app = FastAPI(
+    title="Prédicteur de prix de location de voiture",
+    description=description,
+    version="0.0.1",
+    openapi_tags=tags_metadata
+)
+
+# Définition de la classe Car pour les données d'entrée
+class Car(BaseModel):
     model_key: Literal['Citroën', 'Peugeot', 'PGO', 'Opel', 'Renault', 'Audi', 'BMW', 'Mercedes', 'Volkswagen', 'Ferrari', 'SEAT', 'Mitsubishi', 'Nissan', 'Subaru', 'Toyota', 'other']
-    mileage: Union[int, float]
-    engine_power: Union[int, float]
+    mileage: float
+    engine_power: float
     fuel: Literal['diesel', 'petrol', 'hybrid_petrol', 'electro']
     paint_color: Literal['black', 'grey', 'white', 'red', 'silver', 'blue', 'beige', 'brown', 'green', 'orange']
     car_type: Literal['coupe', 'estate', 'hatchback', 'sedan', 'subcompact', 'suv', 'van', 'convertible']
@@ -23,39 +48,30 @@ class RequestCar(BaseModel):
     has_speed_regulator: bool
     winter_tires: bool
 
-# Chargement du jeu de données
-def load_data(url):
+# Rediriger automatiquement vers /docs (sans montrer cet endpoint dans /docs)
+@app.get("/", include_in_schema=False)
+async def docs_redirect():
+    return RedirectResponse(url='/docs')
+
+# Fonction pour charger le jeu de données
+def load_data(url: str) -> pd.DataFrame:
     print("Chargement du jeu de données depuis l'URL...")
     dataset = pd.read_csv(url)
     dataset = dataset.drop(['Unnamed: 0'], axis=1)
     print("Jeu de données chargé avec succès.")
     return dataset
 
-# Chargement du jeu de données
+# URL du jeu de données
 dataset_url = "https://full-stack-assets.s3.eu-west-3.amazonaws.com/Deployment/get_around_pricing_project.csv"
+# Chargement du jeu de données
 dataset = load_data(dataset_url)
 
-# Création d'une instance FastAPI
-app = FastAPI(
-    title="Prédiction de prix de location GetAround",
-    description="""Bienvenue sur l'API de prédiction de prix de location GetAround !
-
-Soumettez les caractéristiques de votre voiture pour obtenir une estimation du prix de location quotidien, basée sur l'un des trois modèles pré-entraînés : Régression Linéaire, Régression Ridge ou Forêt Aléatoire.
-
-**Utilisez l'endpoint `/predict` pour estimer le prix de location de votre voiture !**
-""",
-    version="1.0.0",
-    openapi_tags=[
-        {
-            "name": "Prédictions",
-            "description": "Point de terminaison pour obtenir des prédictions."
-        }
-    ]
-)
-
 # Définition du point de terminaison pour la prédiction
-@app.post("/predict")
-async def predict(data: RequestCar, regressor: str):
+@app.post("/predict", tags=["Prédictions"])
+async def predict(data: Car, regressor: str):
+    # Nettoyer la mémoire inutilisée
+    gc.collect(generation=2)
+
     # Charger le modèle approprié en fonction de 'regressor'
     if regressor == 'LR':
         loaded_model = load('LR_model.joblib')
@@ -67,28 +83,12 @@ async def predict(data: RequestCar, regressor: str):
         return {"error": f"Regressor '{regressor}' not supported."}
 
     # Création d'un DataFrame à partir des nouvelles données
-    new_data = pd.DataFrame({
-        "model_key": [data.model_key],
-        "mileage": [data.mileage],
-        "engine_power": [data.engine_power],
-        "fuel": [data.fuel],
-        "paint_color": [data.paint_color],
-        "car_type": [data.car_type],
-        "private_parking_available": [data.private_parking_available],
-        "has_gps": [data.has_gps],
-        "has_air_conditioning": [data.has_air_conditioning],
-        "automatic_car": [data.automatic_car],
-        "has_getaround_connect": [data.has_getaround_connect],
-        "has_speed_regulator": [data.has_speed_regulator],
-        "winter_tires": [data.winter_tires]
-    })
+    new_data = pd.DataFrame([data.dict()])
 
     # Prédiction avec le modèle chargé
-    class_idx = int(loaded_model.predict(new_data)[0])  # Convertir en entier
+    predicted_price = loaded_model.predict(new_data)[0]  # Obtenir la prédiction
 
-    # Vérification de la validité de l'index
-    if 0 <= class_idx < len(dataset):
-        predicted_price = dataset.iloc[class_idx]['rental_price_per_day']
-        return {"prediction": int(predicted_price)}  # Assurez-vous que predicted_price est de type int
-    else:
-        return {"error": f"Invalid prediction index: {class_idx}"}
+    return {"prediction": float(predicted_price)}  # Assurez-vous que predicted_price est de type float
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
