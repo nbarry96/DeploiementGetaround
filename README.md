@@ -8,11 +8,14 @@ Ce projet vise à développer plusieurs applications clés :
 - **Application d'Entraînement de Modèles**: Pour prédire les prix de location des voitures en utilisant des techniques de machine learning.
 - **API de Prévision des Prix de Location** : Permet aux utilisateurs de faire des requêtes pour obtenir des prédictions de prix de location de voitures.
 ## III. Structure du projet
-Ce projet est structuré en deux sous-projets distincts, chacun avec son propre ensemble de codes sources et de fichiers README :
+Ce projet est structuré en trois sous-projets distincts, chacun avec son propre ensemble de codes sources et de fichiers README :
 
 1- Analyse des retards (voir le code source et le README.md [ici](https://github.com/nbarry96/DeploiementGetaround/blob/main/delay_analysis/README.md))
 
 2- Prédiction des prix de location de voiture (voir le code source et le fichier README.md lien[ici](https://github.com/nbarry96/DeploiementGetaround/blob/main/price_predictor/Readme.md))
+3- Création d'une API pour la prédiction pour la prédiction du prix de location (voir le code source et le fichier README.md [ici](https://github.com/nbarry96/DeploiementGetaround/blob/main/api/README.md)
+
+Le fichier `EDA.ipynb` comprend l'analyse exploratoire des données.
 
 ## IV. Livrables
 - Un tableau de bord web dédié à l'analyse et aux simulations des retards : https://getearound-api-analysis-ac45266e0df6.herokuapp.com/
