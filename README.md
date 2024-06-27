@@ -10,9 +10,9 @@ Ce projet vise à développer plusieurs applications clés :
 ## III. Structure du projet
 Ce projet est structuré en deux sous-projets distincts, chacun avec son propre ensemble de codes sources et de fichiers README :
 
-1- Analyse des retards (voir le code source et le README.md [ici](https://github.com/nbarry96/DeploiementGetaround/blob/main/delay_analysis/README.md)
+1- Analyse des retards (voir le code source et le README.md [ici](https://github.com/nbarry96/DeploiementGetaround/blob/main/delay_analysis/README.md))
 
-2- Prédiction des prix de location de voiture (voir le code source et le fichier README lien[])
+2- Prédiction des prix de location de voiture (voir le code source et le fichier README.md lien[ici](https://github.com/nbarry96/DeploiementGetaround/edit/main/price_predictor/Readme.md))
 
 ## IV. Livrables
 - Un tableau de bord web dédié à l'analyse et aux simulations des retards : https://getearound-api-analysis-ac45266e0df6.herokuapp.com/
