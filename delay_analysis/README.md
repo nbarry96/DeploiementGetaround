@@ -14,10 +14,6 @@ Vous pouvez accéder au tableau de bord en ligne à cet emplacement : https://ge
 
 ### 2. Prérequis - Installations
 * Avoir un éditeur de code (Visual Studio Code par exemple)
-* Installer les packages requis
-```bash
-pip install -r requirements.txt
-```
 ## 3. Dossier du projet
 Clonez ce dépôt pour créer votre dossier de projet :
 `git clone https://github.com/nbarry96/ML-Supervis-.git`
